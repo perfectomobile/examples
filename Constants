@@ -1,0 +1,19 @@
+public class Constants {
+
+	public static final String REPORT_LIB = "C:\\Test\\";
+	public static final String HTML_REPORT_NAME = "Total.html";
+
+
+	// before demo update the following parameters
+	public static final String PM_USER = "uzie@perfectomobile.com";
+	public static final String PM_PASSWORD = "*************";
+	public static final String PM_CLOUD = "***.perfectomobile.com";
+
+	//Device for the JtestUnited
+	public static final String PM_DEVICE = "3230D2D238BECF6D";
+
+	//Devices for the JUnitParam
+	public static final String PM_DEVICE_1 = "4DF1F4C107319F79";
+	public static final String PM_DEVICE_2 = "4A8203C8DBAB382EE6BB8021B825A736CA734484";
+
+}
