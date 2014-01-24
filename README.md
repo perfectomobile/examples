@@ -12,3 +12,10 @@ This repository contains code samples:
 
 2. Connect the CI [Jenkins] to perfecto mobile.com  
 
+    TBD
+    
+    
+3. JunitBOFAApp 
+        This example shows how to execute test on real mobile with native application using visual object only (OCR objects)
+prerequisite: install bofa on the iphone device
+
