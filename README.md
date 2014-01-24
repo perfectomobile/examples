@@ -28,7 +28,7 @@ This repository contains code samples for the following
 <tr>
 <td>JUnitedWeb</td>
 <td>
-    This example show how to run test on website useing DOM object and Visual objects for validation.
+    This example shows how to run test on website useing DOM object and Visual objects for validation.
     All based on webdriver interface and can be executed on any device in perfecto mobile system 
 </td>
 </tr>
