@@ -19,3 +19,13 @@ This repository contains code samples:
         This example shows how to execute test on real mobile with native application using visual object only (OCR objects)
 prerequisite: install bofa on the iphone device
 
+<table border="1">
+<tr>
+<td>row 1, cell 1</td>
+<td>row 1, cell 2</td>
+</tr>
+<tr>
+<td>row 2, cell 1</td>
+<td>row 2, cell 2</td>
+</tr>
+</table>
