@@ -1,4 +1,3 @@
-
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
@@ -59,7 +58,7 @@ public class JUnitedWeb {
 		device.open();
 		device.home();
 		
-		// Define to types of web driver 
+		// Define two types of web driver 
 				// 1. DOM - standard web webdriver works with the DOM objects
 				// 2. Visual Driver - allows to validate that text appear on the screen using visual analysis (OCR).
 				//    This validation is very important and simulate the real user experience.
