@@ -21,11 +21,13 @@ prerequisite: install bofa on the iphone device
 
 <table border="1">
 <tr>
-<td>row 1, cell 1</td>
-<td>row 1, cell 2</td>
+<td>FileName</td>
+<td>Description</td>
 </tr>
 <tr>
-<td>row 2, cell 1</td>
-<td>row 2, cell 2</td>
+<td>Write your own JUnit with perfecto mobile, cell 1</td>
+<td> This example shows how to run Perfecto Mobile test on a real device as a JUnit.
+    It also contains the option to provide the device ID as parameter
+</td>
 </tr>
 </table>
