@@ -32,5 +32,12 @@ This repository contains code samples for the following
     All based on webdriver interface and can be executed on any device in perfecto mobile system 
 </td>
 </tr>
+<tr>
+<td>uploadAndInstallApp</td>
+<td>
+    This code example shows how to use perfecto mobile driver to upload and install applicaitons (.ipa or .apk) from local PC to <b>real devices</b> 
+</td>
+</tr>
+
 
 </table>
