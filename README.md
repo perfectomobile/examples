@@ -1,11 +1,9 @@
 Examples
 ========
 
+<a href="http://www.perfectomobile.com/">Perfecto Mobile</a> provides mobile app developers and quality assurance teams a hosted device lab and write-once-run-anywhere test automation for native, hybrid and mobile web apps. 
 
-Perfecto Mobile Examples 
-<a href="http://Perfectomobile.com/">Check our cloud</a>
-
-This repository contains code samples for the following 
+This repository contains code samples use our <a href="http://help.perfectomobile.com/article/AA-02326/">WebDriver implementation</a> and demonstrates execution with several test frameworks
 
 <table border="1">
 <tr>
@@ -17,7 +15,7 @@ This repository contains code samples for the following
 <td>
 Basic code which shows how to work with perfecto cloud, select a device and execute simple webDriver test.
 The test open google and search for Perfecto Mobile.
-    <br><b>prerequisite</b>: installPerfecto mobile add-in to Eclipse follow these <a href="http://help.perfectomobile.com/article/AA-02275/259/Guides-Documentation/Selenium/MobileCloud-WebDriver-MobileCloud-for-Eclipse-December-2013.html/">instructions</a>
+    <br><b>prerequisite</b>: install Perfecto mobile add-in to Eclipse follow these <a href="http://help.perfectomobile.com/article/AA-02275/259/Guides-Documentation/Selenium/MobileCloud-WebDriver-MobileCloud-for-Eclipse-December-2013.html/">instructions</a>
  
 </td>
 </tr>
