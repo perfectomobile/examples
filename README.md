@@ -38,6 +38,10 @@ This repository contains code samples for the following
     This code example shows how to use perfecto mobile driver to upload and install applicaitons (.ipa or .apk) from local PC to <b>real devices</b> 
 </td>
 </tr>
-
+<tr>
+<td>TestNG</td>
+<td>
+    This code example shows how to run TestNG script on real devices in Perfecto Mobile cloud
+</tr>
 
 </table>
