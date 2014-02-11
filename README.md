@@ -15,7 +15,7 @@ This repository contains code samples for the following
 <tr>
 <td>HelloWorld</td>
 <td>
-Basic code which show how to work with perfecto cloud, select a device and execute simple webDriver test.
+Basic code which shows how to work with perfecto cloud, select a device and execute simple webDriver test.
 The test open google and search for Perfecto Mobile.
     <br><b>prerequisite</b>: installPerfecto mobile add-in to Eclipse follow these <a href="http://help.perfectomobile.com/article/AA-02275/259/Guides-Documentation/Selenium/MobileCloud-WebDriver-MobileCloud-for-Eclipse-December-2013.html/">instructions</a>
  
