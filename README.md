@@ -59,8 +59,8 @@ The test open google and search for Perfecto Mobile.
     the test open the post office web page and vlaidate spcific zip code.
     The folder contains tree files:
     <b>PostOffice.Feature</b> the test case description in english. <br>
-    <b>PostofficeDefs.java</b> the test case translator between the feature file and the test implementation.<br>
-    <b>PostOffice.java</b> The java code which execute the test on the device in Perfecto Mobile cloud <br>
+    <b>PostofficeDefs.java</b> the test case translator between the feature file and the test implementation. <br>
+    <b>PostOffice.java</b> The java code which execute the test on the device in Perfecto Mobile cloud. <br>
 </tr>
  
 </table>
