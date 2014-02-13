@@ -53,7 +53,7 @@ The test open google and search for Perfecto Mobile.
     This code example shows how to run TestNG script on real devices in Perfecto Mobile cloud
 </tr>
 <tr>
-<td>PerfectoCucmber</td>
+<td>PerfectoCucumber</td>
 <td>
     This code showes how to run cucmber (JVM) test on real device in perfectomobile cloud.
     the test open the post office web page and vlaidate spcific zip code.
