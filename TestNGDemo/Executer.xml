@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="testList" parallel="tests" thread-count="5">
+	<test name="United-android">
+		<parameter name="deviceID" value="3152168C4EAA1E2A5DE93CF7B89222720E3A62E0">
+			<classes>
+				<class name="tests.TestNGUnitedTest" />
+			</classes>
+		</parameter>
+	</test>
+	<test name="United-iphone">
+		<parameter name="deviceID" value="0149BCA71700D01F">
+			<classes>
+				<class name="tests.TestNGUnitedTest" />
+			</classes>
+		</parameter>
+	</test>
+
+</suite>
+
+ 
