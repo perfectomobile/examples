@@ -63,5 +63,9 @@ The test open google and search for Perfecto Mobile.
     <b>PostOffice.java</b> The java code which execute the test on the device in Perfecto Mobile cloud. <br>
     <b>RunCukesTest.java</b> the test executer  
 </tr>
- 
+ <tr>
+<td>getDOM</td>
+<td>
+    This code showes how to to get the DOM object to your code.
+</tr>
 </table>
