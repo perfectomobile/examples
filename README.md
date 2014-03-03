@@ -22,7 +22,7 @@ The test open google and search for Perfecto Mobile.
 <tr>
 <td>JUNITExample</td>
 <td>
-    Write your own JUnit with perfecto mobile:
+    Write your own JUnit with Perfecto Mobile:
     This example shows how to run Perfecto Mobile test on a real device as a JUnit.
     It also contains the option to provide the device ID as parameter
 </td>
@@ -37,14 +37,13 @@ The test open google and search for Perfecto Mobile.
 <tr>
 <td>JUnitedWeb</td>
 <td>
-    This example shows how to run test on website useing DOM object and Visual objects for validation.
-    All based on webdriver interface and can be executed on any device in perfecto mobile system 
+    This example shows how to run test on website using DOM object and Visual objects for validation. All based on webdriver interface and can be executed on any device in perfecto mobile system.
 </td>
 </tr>
 <tr>
 <td>uploadAndInstallApp</td>
 <td>
-    This code example shows how to use perfecto mobile driver to upload and install applicaitons (.ipa or .apk) from local PC to <b>real devices</b> 
+    This code example shows how to use Perfecto Mobile driver to upload and install applications (.ipa or .apk) from local PC to <b>real devices</b> 
 </td>
 </tr>
 <tr>
@@ -55,10 +54,10 @@ The test open google and search for Perfecto Mobile.
 <tr>
 <td>PerfectoCucumber</td>
 <td>
-    This code showes how to run cucmber (JVM) test on real device in perfectomobile cloud.
-    the test open the post office web page and vlaidate spcific zip code.
+    This code shows how to run Cucumber (JVM) test on real device in Perfecto Mobile cloud.
+    The test open the post office web page and validate specific zip code.  
     The folder contains four files:<br>
-    <b>PostOffice.Feature</b> the test case description in english. <br>
+    <b>PostOffice.Feature</b> the test case description in English. <br>
     <b>PostofficeDefs.java</b> the test case translator between the feature file and the test implementation. <br>
     <b>PostOffice.java</b> The java code which execute the test on the device in Perfecto Mobile cloud. <br>
     <b>RunCukesTest.java</b> the test executer  
@@ -66,6 +65,6 @@ The test open google and search for Perfecto Mobile.
  <tr>
 <td>getDOM</td>
 <td>
-    This code showes how to to get the DOM object to your code.
+    This code shows how to get the DOM object to your code.
 </tr>
 </table>
