@@ -67,4 +67,9 @@ The test open google and search for Perfecto Mobile.
 <td>
     This code shows how to get the DOM object to your code.
 </tr>
+ <tr>
+<td>ExecuteJavaScrip</td>
+<td>
+    This code sexecutes Java script on web on real devices.
+</tr>
 </table>
