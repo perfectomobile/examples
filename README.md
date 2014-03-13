@@ -72,4 +72,10 @@ The test open google and search for Perfecto Mobile.
 <td>
     This code sexecutes Java script on web on real devices.
 </tr>
+<td>executeLowLevelAPI </td>
+<td>
+    Perfecto Mobile provides HTTP API which allows the customer to execute any command on perfecto mobile cloud and on any device in the cloud.
+    This code describes how to work with the API, as an example the code execute SMSme command on real device.
+</td>    
+</tr>
 </table>
