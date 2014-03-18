@@ -1,0 +1,161 @@
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.*;
+import org.openqa.selenium.interactions.internal.Coordinates;
+import org.openqa.selenium.WebDriver.*;
+
+import com.perfectomobile.selenium.*;
+import com.perfectomobile.selenium.api.*;
+import com.perfectomobile.selenium.by.*;
+import com.perfectomobile.selenium.output.*;
+import com.perfectomobile.selenium.options.*;
+import com.perfectomobile.selenium.options.rotate.*;
+import com.perfectomobile.selenium.options.touch.*;
+import com.perfectomobile.selenium.options.visual.*;
+import com.perfectomobile.selenium.options.visual.image.*;
+import com.perfectomobile.selenium.options.visual.text.*;
+import com.perfectomobile.httpclient.MediaType;
+import com.perfectomobile.httpclient.utils.FileUtils;
+
+public class MobileTest {
+	
+	static int num=1;// screenshot number
+	
+	//Available report attachments
+	//true to download attachment type
+	static Boolean image=true; //download Images
+	static Boolean expectedImage=true; // download Expected Image
+	static Boolean video=true;// download Videos
+	static Boolean network=true; //download Shunra
+	static Boolean vitals=true; // download Vitals
+
+	public static void main(String[] args) {
+
+		System.out.println("Run started");
+		
+		// The default empty constructor of MobileDriver should be used when running the code inside Eclipse.
+		// The user must have the ECLIPSE role in this case.
+		// Otherwise, use the constructor that receives the host, user and password. E.g.
+		// MobileDriver driver = new MobileDriver(host, user, password);
+		MobileDriver driver = new MobileDriver();
+		String deviceID = null;
+		try {
+         // write your code here
+         IMobileDevice myDevice=driver.getDevice("123456789");
+			   myDevice.open();
+         deviceID=myDevice.getProperty(MobileDeviceProperty.DEVICE_ID);
+         // your test on device
+					
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			driver.quit();
+			downloadAttachments(driver,deviceID); // call to function
+			downloadReport(driver); // call to function
+			
+		}
+		System.out.println("Run ended");
+	}
+	
+
+// Downloads the report attachments according to defined report variables defined above.
+private static void downloadAttachments(MobileDriver driver,String deviceID) {
+		
+		if(video)
+		{
+		List<String> attachments = driver.getReportAttachmentPaths(deviceID, MobileReportAttachmentType.VIDEO);
+		for (String attachment : attachments) {
+		      InputStream stream = driver.downloadReportAttachment(attachment, MobileReportAttachmentType.VIDEO);
+		      File networkFile = new File("C:\\test\\reports\\"+attachment);
+		      networkFile.getParentFile().mkdirs();
+              FileUtils.write(stream, networkFile);}
+		}
+		if(image)
+		{
+              List<String> attachmentsImages = driver.getReportAttachmentPaths(deviceID, MobileReportAttachmentType.IMAGE);
+      		for (String attachmentImages : attachmentsImages) {
+      		      InputStream streamImages = driver.downloadReportAttachment(attachmentImages, MobileReportAttachmentType.IMAGE);
+      		      File networkFileIm = new File("C:\\test\\reports"+attachmentImages);
+      		      networkFileIm.getParentFile().mkdirs();
+                    FileUtils.write(streamImages, networkFileIm); 
+      		} 
+		}
+		
+		if(expectedImage)
+		{
+              List<String> attachmentsExpectedImages = driver.getReportAttachmentPaths(deviceID, MobileReportAttachmentType.IMAGE);
+      		for (String attachmentExpectedImages : attachmentsExpectedImages) {
+      		      InputStream streamImagesExpected = driver.downloadReportAttachment(attachmentExpectedImages, MobileReportAttachmentType.IMAGE);
+      		      File networkFileImExpected = new File("C:\\test\\reports"+attachmentExpectedImages);
+      		      networkFileImExpected.getParentFile().mkdirs();
+                    FileUtils.write(streamImagesExpected, networkFileImExpected); 
+      		} 
+		}
+		
+		
+		if(network)
+		{
+              List<String> attachmentsShunra = driver.getReportAttachmentPaths(deviceID, MobileReportAttachmentType.NETWORK);
+              	for (String attachmentShunra : attachmentsShunra) {
+              		  InputStream streamShunra = driver.downloadReportAttachment(attachmentShunra, MobileReportAttachmentType.NETWORK);
+              		  File networkFileShunra = new File("C:\\test\\reports"+attachmentShunra);
+              		  networkFileShunra.getParentFile().mkdirs();
+                         FileUtils.write(streamShunra, networkFileShunra);
+              	}
+		}
+		
+		if(vitals)
+     { 
+    	 List<String> attachmentsVitals = driver.getReportAttachmentPaths(deviceID, MobileReportAttachmentType.VITAL);
+   		for (String attachmentVital : attachmentsVitals) {
+   		      InputStream streamVitals = driver.downloadReportAttachment(attachmentVital, MobileReportAttachmentType.VITAL);
+   		      File networkFileVit = new File("C:\\test\\reports"+attachmentVital);
+   		      networkFileVit.getParentFile().mkdirs();
+                 FileUtils.write(streamVitals, networkFileVit); 
+    	     } 
+    }
+
+}
+	
+// Takes a device screenshot and saves it to a specified location 
+private static void screenshot(IMobileDevice driver)
+{
+
+	try {
+		File screenshotFile = new File("C:\\test\\screenshot"+num+".png");
+		File file = driver.getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(file, screenshotFile);
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	     num++;   
+}
+
+// Downloads the report to a specified location
+private static void downloadReport(IMobileDriver driver) {
+	InputStream reportStream = driver.downloadReport(MediaType.PDF);
+	if (reportStream != null) {
+		File reportFile = new File("C:\\test\\report.pdf");
+		FileUtils.write(reportStream, reportFile);
+		
+	}
+}
+
+private static void sleep(long millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException e) {
+		}
+}
+}
