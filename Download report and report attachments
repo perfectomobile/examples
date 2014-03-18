@@ -67,7 +67,7 @@ public class MobileTest {
 		System.out.println("Run ended");
 	}
 	
-
+	
 // Downloads the report attachments according to defined report variables defined above.
 private static void downloadAttachments(MobileDriver driver,String deviceID) {
 		
