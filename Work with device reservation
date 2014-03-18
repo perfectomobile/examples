@@ -1,0 +1,162 @@
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import org.apache.commons.lang3.time.DateUtils;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.*;
+import org.openqa.selenium.interactions.internal.Coordinates;
+import org.openqa.selenium.WebDriver.*;
+
+import com.perfectomobile.selenium.*;
+import com.perfectomobile.selenium.api.*;
+import com.perfectomobile.selenium.by.*;
+import com.perfectomobile.selenium.output.*;
+import com.perfectomobile.selenium.options.*;
+import com.perfectomobile.selenium.options.rotate.*;
+import com.perfectomobile.selenium.options.touch.*;
+import com.perfectomobile.selenium.options.visual.*;
+import com.perfectomobile.selenium.options.visual.image.*;
+import com.perfectomobile.selenium.options.visual.text.*;
+import com.perfectomobile.httpclient.MediaType;
+import com.perfectomobile.httpclient.utils.FileUtils;
+
+public class DeviceReservation {
+	
+	public static void main(String[] args) {
+
+		System.out.println("Run started");
+		
+		// The default empty constructor of MobileDriver should be used when running the code inside Eclipse.
+		// The user must have the ECLIPSE role in this case.
+		// Otherwise, use the constructor that receives the host, user and password. E.g.
+		// MobileDriver driver = new MobileDriver(host, user, password);
+		MobileDriver driver = new MobileDriver();
+
+		try {
+         
+			  // write your code here
+    		IMobileDevice device=driver.getDevice("72B4463CF6DC2AFEF876A6B6F0131BD91C82650C");
+    		IMobileReservations myReservation=device.getReservations();
+    		// first reservation starts 5 minutes from now for next 20 minutes
+    		long startTime=System.currentTimeMillis()+ (5 * DateUtils.MILLIS_PER_MINUTE);
+    		long endTime=System.currentTimeMillis() + (25 * DateUtils.MILLIS_PER_MINUTE);
+    					
+    		String  reservationID=myReservation.createReservation(startTime,endTime); //returned Reservation ID
+    		MobileReservationInfo info=myReservation.getReservationInfo(reservationID);
+    		
+    		
+    		// reservation details
+    		System.out.println("ID:= "+info.getDeviceId());
+    		System.out.println("Creation time:= "+info.getCreationTime());
+    		System.out.println("ReservationId:= "+info.getReservationId());
+    		System.out.println("ReservedBy:= "+info.getReservedBy());
+    		System.out.println("ReservedTo:= "+info.getReservedTo());
+    		System.out.println("Status:= "+info.getStatus());
+    		System.out.println("StartTime:= "+info.getStartTime());
+    		System.out.println("EndTime:= "+info.getEndTime());
+    		System.out.println("LastModificationTime:= "+info.getLastModificationTime());
+    		System.out.println("reservationID: "+reservationID);
+    	
+    		sleep(5000);
+    		
+		    // set new reservation end time
+    	  endTime=System.currentTimeMillis() + (200 * DateUtils.MILLIS_PER_MINUTE);
+    		System.out.println ("End time Update");
+    		myReservation.updateReservation(reservationID,null,endTime);//only  end time to will be updated
+    		sleep(5000);
+		
+			  startTime=System.currentTimeMillis() + (150 * DateUtils.MILLIS_PER_MINUTE);
+    		System.out.println ("Start time Update");
+    		sleep(5000);
+    		myReservation.updateReservation(reservationID,startTime,null);//only start time to update
+    		sleep(5000);
+    		
+    		// create reservation for new device that  starts in two hours and continues for one hour
+    		startTime=System.currentTimeMillis() + (120 * DateUtils.MILLIS_PER_MINUTE);
+    		endTime=System.currentTimeMillis() + (180 * DateUtils.MILLIS_PER_MINUTE);
+				IMobileDevice device2=driver.getDevice("J303800NZ38");
+		    IMobileReservations myReservation2=device2.getReservations();
+		    String  reservationID2=myReservation2.createReservation(startTime,endTime);
+		    MobileReservationInfo info2=myReservation2.getReservationInfo(reservationID2);
+	    	System.out.println("ReservationId 2:= "+info2.getReservationId());
+		    sleep(2000);
+		
+		   // reservation info for first reservation		
+      	List<MobileReservationInfo> myreservations=myReservation.getReservationsInfo(startTime,endTime); 
+      		
+      	for (MobileReservationInfo Myreservations : myreservations) {
+      			String ID=Myreservations.getDeviceId();
+      			System.out.println ("ID: "+ID);
+      			String reservID=Myreservations.getReservationId();
+      			System.out.println ("reservID: "+ reservID);
+      		} 
+
+		
+    		sleep(2000);
+    		// delete reservations
+    		myReservation.deleteReservation(reservationID);
+    		myReservation.deleteReservation(reservationID2);
+    		
+    		sleep(2000);
+    		
+    		// multiple reservations for one device
+    		long startTime1=System.currentTimeMillis() + (20* DateUtils.MILLIS_PER_MINUTE);
+    		endTime=System.currentTimeMillis() + (40 * DateUtils.MILLIS_PER_MINUTE);
+    		reservationID=myReservation.createReservation(startTime1,endTime);
+    		System.out.println ("reservID: "+ reservationID);
+    		
+    		startTime=System.currentTimeMillis() + (50 * DateUtils.MILLIS_PER_MINUTE);
+    		endTime=System.currentTimeMillis() + (100 * DateUtils.MILLIS_PER_MINUTE);
+    		String reservationID1=myReservation.createReservation(startTime,endTime);
+    		System.out.println ("reservID: "+ reservationID1);
+    		startTime=System.currentTimeMillis() + (110 * DateUtils.MILLIS_PER_MINUTE);
+    		endTime=System.currentTimeMillis() + (130 * DateUtils.MILLIS_PER_MINUTE);
+    		reservationID2=myReservation.createReservation(startTime,endTime);
+    		
+    		System.out.println ("reservID: "+ reservationID2);
+    		
+    		startTime=System.currentTimeMillis() + (140 * DateUtils.MILLIS_PER_MINUTE);
+    		endTime=System.currentTimeMillis() + (180 * DateUtils.MILLIS_PER_MINUTE);
+    		String reservationID3=myReservation.createReservation(startTime,endTime);
+    		System.out.println ("reservID: "+ reservationID3);
+    		
+    		// info for all reservations
+    		List<MobileReservationInfo> myReservationsList=myReservation.getReservationsInfo(startTime1,endTime); 
+    		
+    		for (MobileReservationInfo Myreservations : myReservationsList) {
+    			String reservID=Myreservations.getReservationId();
+    			System.out.println ("reservID: "+ reservID);		
+    		} 
+    		// delete reservations
+    		myReservation.deleteReservation(reservationID);
+    		myReservation.deleteReservation(reservationID1);
+    		myReservation.deleteReservation(reservationID2);
+    		myReservation.deleteReservation(reservationID3);
+    		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			driver.quit();
+		
+		}
+		System.out.println("Run ended");
+	}
+	
+	
+	
+	private static void sleep(long millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException e) {
+		}
+	}
+}
