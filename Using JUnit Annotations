@@ -1,0 +1,101 @@
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.*;
+import org.openqa.selenium.interactions.internal.Coordinates;
+import org.openqa.selenium.WebDriver.*;
+
+import com.perfectomobile.selenium.*;
+import com.perfectomobile.selenium.api.*;
+import com.perfectomobile.selenium.by.*;
+import com.perfectomobile.selenium.output.*;
+import com.perfectomobile.selenium.options.*;
+import com.perfectomobile.selenium.options.rotate.*;
+import com.perfectomobile.selenium.options.touch.*;
+import com.perfectomobile.selenium.options.visual.*;
+import com.perfectomobile.selenium.options.visual.image.*;
+import com.perfectomobile.selenium.options.visual.text.*;
+
+import com.perfectomobile.httpclient.MediaType;
+import com.perfectomobile.httpclient.utils.FileUtils;
+import org.openqa.selenium.interactions.internal.Coordinates;
+import com.perfectomobile.selenium.api.IMobileDevice;
+import com.perfectomobile.selenium.api.IMobileDriver;
+import com.perfectomobile.selenium.api.IMobileWebDriver;
+import com.perfectomobile.selenium.MobileDriver;
+import org.testng.annotations.Test;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.AssertJUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.testng.ITestObjectFactory;
+import org.testng.TestNGException;
+import org.testng.collections.Lists;
+import org.testng.collections.Maps;
+import org.testng.internal.Utils;
+import org.testng.xml.TestNGContentHandler;
+import org.openqa.selenium.WebElement;
+
+public class MobileTest {
+  
+	
+@BeforeClass
+public void setUp() throws Exception {
+     
+        System.out.println("Run started");
+        }
+
+@Test
+public void MyTest() throws Exception, IOException
+{
+        MobileDriver driver= new MobileDriver();
+        String baseURL = "google.com";
+        
+        IMobileDevice device =driver.getDevice("72B4463CF6DC2AFEF876A6B6F0131BD91C82650C");
+        
+        device.open();
+        device.home();
+        
+        WebDriver webDriver =device.getDOMDriver(baseURL);
+        WebDriver visualDriver =device.getVisualDriver();
+        
+        String actualTitle= webDriver.getTitle();
+        String expectedTitle = ("Google");//Google
+        assertTrue(actualTitle.equals(expectedTitle));
+        System.out.println("The title is " + actualTitle);
+        webDriver.findElement(By.xpath("(//input[@id=\"lst-ib\"])[1]")).sendKeys("Perfecto mobile");
+        Thread.sleep(2000);
+        webDriver.findElement(By.xpath("(//input[@id=\"tsbb\"])[1]")).click();
+        Thread.sleep(2000);
+        visualDriver.findElement(By.linkText("www.perfectomobile.com")).click();
+        System.out.println("Going to Perfecto Mobile");
+        
+        device.close();
+        driver.quit();
+
+}
+
+private void assertTrue(boolean equals) {
+        // TODO Auto-generated method stub
+        
+}
+@AfterClass
+
+public static void tearDown() throws Exception {
+	                 
+         System.out.println("Run ended");
+ }
+
+}
+
