@@ -78,4 +78,23 @@ The test open google and search for Perfecto Mobile.
     This code describes how to work with the API, as an example the code execute SMSme command on real device.
 </td>    
 </tr>
+<tr>
+<td> Download report and report attachments</td>
+<td>
+    Demonstrates how to download the Perfecto Mobile report to a specified location; and the report attachments.
+</td>
+</tr>
+<tr>
+<td> Using JUnit Annotations</td>
+<td>
+    Using @BeforeClass and @AfterClass JUnit Annotations
+</td>
+</tr>
+<tr>
+<td> Work with device reservation</td>
+<td>
+   Create,update,delete reservations
+</td>
+</tr>
+
 </table>
