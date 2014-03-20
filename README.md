@@ -96,5 +96,11 @@ The test open google and search for Perfecto Mobile.
    Create,update,delete reservations
 </td>
 </tr>
+<tr>
+<td> getObjectList</td>
+<td>
+Get list of objects with specific property and manipulate it in the code, in this example the all the buttons have the class <b>ui-link-inherit</b>.
+</td>
+</tr>
 
 </table>
