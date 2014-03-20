@@ -99,8 +99,7 @@ The test open google and search for Perfecto Mobile.
 <tr>
 <td> getObjectList</td>
 <td>
-Get list of objects with specific property and manipulate it in the code, in this example (carmax.com) all the car items have the class <b>ui-link-inherit</b>.
-and one command bring all the items to java List
+Get list of objects with specific property and manipulate it in the code, in this example (carmax.com) all the car items have the class <b>ui-link-inherit</b> and one command bring all the items to java List
 </td>
 </tr>
 
