@@ -17,11 +17,13 @@ public class getObjList
 
 	private static void objList()
 	{
-		MobileDriver PMdriver = new MobileDriver();
+	MobileDriver PMdriver = new MobileDriver();
+
+		//IMobileDevice device = PMdriver.getDevice("0149BCA71700D01F");
 
 		IMobileDevice device = PMdriver.getDevice("0149BCA71700D01F");
 		device.open();
-		IMobileWebDriver  webDriver = device.getDOMDriver ("www.united.com");
+		IMobileWebDriver  webDriver = device.getDOMDriver ("www.carmax.com");
 		WebDriver visualDriver = device.getVisualDriver();
 
 		webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -30,16 +32,18 @@ public class getObjList
 		visualDriver.manage().timeouts().implicitlyWait(25,TimeUnit.SECONDS);
 
 
-		visualDriver.findElement(By.linkText("Flight status")) ;
+		visualDriver.findElement(By.linkText("Vehicle Type")).click();
+		visualDriver.findElement(By.linkText("select a type")) ;
+
+		List<WebElement> objList  = webDriver.findElements(By.xpath("(//div[@id=\"Content-\"])/ul/li/following::*[contains(@class,\"ui-link-inherit\")]"));
+
 		
-		List<WebElement> objList  = webDriver.findElements(By.xpath("//*[contains(@class,\"ui-link-inherit\")]"));
-		
-		for (int i = 0 ; i <objList.size() ; i++)
+ 		for (int i = 0 ; i <objList.size() ; i++)
 		{
 			WebElement item = objList.get(i);
 			System.out.println("****"+item.getText());
 		}
-
+		 
 		 
 	}
 	
