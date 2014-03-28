@@ -32,7 +32,15 @@ public class executeLowLevelAPI {
                                 closeSession(execID);
                 }
 
+                public void callMe(String text,String Device)throws Exception 
+	{
+		// <action command="gateway" subcommand="call" error-policy="CONTINUE">
 
+		String execID = getExecID(Constants.PM_CLOUD,Constants.PM_USER,Constants.PM_PASSWORD);
+		String cmd =   "https://"+Constants.PM_CLOUD+"/services/executions/"+execID+"?user="+Constants.PM_USER+"&password="+Constants.PM_PASSWORD+"&operation=command&command=gateway&subcommand=call&param.to.handset="+Device;
+		String res = htmlcall (cmd);
+		closeSession(execID);
+	}
                 public void closeSession(String execID)  throws Exception 
                 {
                                 String closeURL = "https://"+Constants.PM_CLOUD+"/services/executions/"+execID+"?user="+Constants.PM_USER+"&password="+Constants.PM_PASSWORD+"&operation=end";
