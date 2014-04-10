@@ -103,5 +103,10 @@ Get list of objects with specific property and manipulate it in the code, in thi
  <a href="http://blog.perfectomobile.com/2014/03/20/1872/">more details</a>
 </td>
 </tr>
-
+<tr>
+<td>DeviceFactory</td>
+<td>
+Tthis factory return the next available device in Perfecto Mobile cloud based on the OS (Android or iOS)
+</td>
+</tr>
 </table>
