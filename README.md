@@ -70,7 +70,7 @@ The test open google and search for Perfecto Mobile.
  <tr>
 <td>ExecuteJavaScrip</td>
 <td>
-    This code sexecutes Java script on web on real devices.
+    This codes executes Java script on web on real devices.
 </tr>
 <td>executeLowLevelAPI </td>
 <td>
@@ -106,7 +106,7 @@ Get list of objects with specific property and manipulate it in the code, in thi
 <tr>
 <td>DeviceFactory</td>
 <td>
-Tthis factory return the next available device in Perfecto Mobile cloud based on the OS (Android or iOS)
+This factory return the next available device in Perfecto Mobile cloud based on the OS (Android or iOS)
 </td>
 </tr>
 </table>
