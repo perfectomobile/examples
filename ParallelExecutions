@@ -1,0 +1,153 @@
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.*;
+import org.openqa.selenium.interactions.internal.Coordinates;
+import org.openqa.selenium.WebDriver.*;
+
+import com.perfectomobile.selenium.*;
+import com.perfectomobile.selenium.api.*;
+import com.perfectomobile.selenium.by.*;
+import com.perfectomobile.selenium.output.*;
+import com.perfectomobile.selenium.options.*;
+import com.perfectomobile.selenium.options.visual.*;
+import com.perfectomobile.selenium.options.visual.image.*;
+import com.perfectomobile.selenium.options.visual.text.*;
+import com.perfectomobile.selenium.options.touch.*;
+import com.perfectomobile.httpclient.MediaType;
+import com.perfectomobile.httpclient.utils.FileUtils;
+
+public class ParallelMobileTest_Executor implements Runnable {
+	
+	IMobileDevice device;
+	MobileDriver driver;
+
+	public ParallelMobileTest_Executor() {
+		driver = new MobileDriver();
+	}
+
+	public IMobileDevice getDevice() {
+		return device;
+	}
+
+	public void setDevice(String deviceId) {
+		this.device = driver.getDevice(deviceId);
+	}
+
+	
+	public static void main(String[] args) {
+
+		System.out.println("Run started");
+		
+		ParallelMobileTest_Executor test1 = new ParallelMobileTest_Executor();
+		ParallelMobileTest_Executor test2 = new ParallelMobileTest_Executor();
+		
+	
+		
+		test1.setDevice("123456789");
+		test2.setDevice("1234567890");
+		
+		
+		
+		ExecutorService executor = Executors.newFixedThreadPool(2);
+		executor.execute(test1);
+		executor.execute(test2);
+		executor.shutdown();
+
+	}
+
+	private static void sleep(long millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException e) {
+		}
+	}
+
+	@Override
+	public void run() {		
+		
+		try {
+		System.out.println("Script started on device " + device.getProperty(MobileDeviceProperty.DEVICE_ID));
+		device.open();
+		sleep(1000);
+		device.home();	
+		
+		
+		System.out.println("Sleep started" );
+		sleep(5000);
+		
+		
+		 
+		String repositoryKey = "PUBLIC:PMIOSDemoInstrumented.ipa";
+		sleep(6000);
+		device.installApplication(repositoryKey);
+		
+		IMobileWebDriver webDriver = device.getVisualDriver();
+		webDriver.manageMobile().visualOptions().validationOptions()
+				.setScroll(true);
+		webDriver.manageMobile().visualOptions().validationOptions()
+				.setMaxScroll(5);
+		webDriver.manageMobile().visualOptions().validationOptions()
+				.setNext("SWIPE_LEFT");
+		webDriver.findElement(By.linkText("PMIOSDemo")).click();
+		device.getProperty(MobileDeviceProperty.MANUFACTURER);
+
+		webDriver.manageMobile().visualOptions().init();
+
+		webDriver.manageMobile().visualOptions().selectOptions().setShift(MobileShiftOptions.LEFT);
+		webDriver.manageMobile().visualOptions().selectOptions().setOffset("30%");
+		webDriver.findElement(By.linkText("User")).sendKeys("John");
+
+		sleep(4000);
+
+		webDriver.manageMobile().visualOptions().init();
+
+		webDriver.manageMobile().visualOptions().selectOptions().setShift(MobileShiftOptions.LEFT);
+		webDriver.manageMobile().visualOptions().selectOptions().setOffset("30%");
+		webDriver.findElement(By.linkText("Password")).sendKeys("Perfecto1");
+
+		sleep(5000);
+		webDriver.manageMobile().visualOptions().init();
+
+		webDriver.manageMobile().visualOptions().textMatchOptions().setIndex(2);
+		webDriver.findElement(By.linkText("Login")).click();
+
+		webDriver.manageMobile().visualOptions().init();
+
+		webDriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		webDriver.findElement(By.linkText("Continue")).click();
+
+		webDriver.manageMobile().visualOptions().init();
+		webDriver.findElement(By.linkText("Third Screen")).click();
+
+		webDriver.manageMobile().visualOptions().init();
+
+		webDriver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+		webDriver.manageMobile().visualOptions().validationOptions().setScroll(true);
+		webDriver.manageMobile().visualOptions().validationOptions().setNext("SWIPE_UP");
+		WebElement webElement = webDriver11.findElement(By.linkText("Skype"));
+
+		
+		device.close();
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			driver.quit();
+		}
+		System.out.println("Script ended");
+	}
+}
+
