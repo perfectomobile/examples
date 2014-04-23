@@ -84,6 +84,15 @@ The test open google and search for Perfecto Mobile.
     Demonstrates how to download the Perfecto Mobile report to a specified location; and the report attachments.
 </td>
 </tr>
+
+<tr>
+<td> Parallel Script Execution</td>
+<td>
+    Demonstrates how to execute script on number of devices using Java Executor Interface  
+</td>
+</tr>
+
+
 <tr>
 <td> Using JUnit Annotations</td>
 <td>
