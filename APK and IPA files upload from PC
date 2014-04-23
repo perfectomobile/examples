@@ -1,0 +1,93 @@
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.*;
+import org.openqa.selenium.interactions.internal.Coordinates;
+import org.openqa.selenium.WebDriver.*;
+
+import com.perfectomobile.selenium.*;
+import com.perfectomobile.selenium.api.*;
+import com.perfectomobile.selenium.by.*;
+import com.perfectomobile.selenium.output.*;
+import com.perfectomobile.selenium.options.*;
+import com.perfectomobile.selenium.options.rotate.*;
+import com.perfectomobile.selenium.options.touch.*;
+import com.perfectomobile.selenium.options.visual.*;
+import com.perfectomobile.selenium.options.visual.image.*;
+import com.perfectomobile.selenium.options.visual.text.*;
+import com.perfectomobile.httpclient.MediaType;
+import com.perfectomobile.httpclient.utils.FileUtils;
+
+public class MobileTest {
+	
+	public static void main(String[] args) {
+
+		System.out.println("Run started");
+		
+		// The default empty constructor of MobileDriver should be used when running the code inside Eclipse.
+		// The user must have the ECLIPSE role in this case.
+		// Otherwise, use the constructor that receives the host, user and password. E.g.
+		// MobileDriver driver = new MobileDriver(host, user, password);
+		MobileDriver driver = new MobileDriver();
+
+		try {
+         // write your code here
+			//Upload IPA file from my folder to repository
+			String repositoryKeyApple = "PUBLIC:Wikipedia Mobile.ipa";
+			File file = new File("H://Apps//Wikipedia Mobile.ipa");
+			driver.uploadMedia(repositoryKeyApple, file);
+			
+			//Upload APK file from my folder to repository
+			String repositoryKeyAndroid = "PRIVATE:AnswerMe.apk";
+			file = new File("H://APPS//AnswerMe.apk");
+			driver.uploadMedia(repositoryKeyAndroid, file);
+			
+			IMobileDevice device=selectDevicefree(driver);
+			String OS=device.getProperty(MobileDeviceProperty.OS);
+			sleep(5000);
+			 if (OS.equals("Apple")){
+				 device.installApplication(repositoryKeyApple);
+				 }
+			 else{
+				 device.installApplication(repositoryKeyAndroid);
+			     }
+			
+			//your code
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			driver.quit();
+		}
+		System.out.println("Run ended");
+	}
+	
+	private static IMobileDevice selectDevicefree(MobileDriver driver)
+	{
+		//first  available device without conditions
+		MobileDeviceFindOptions options=new MobileDeviceFindOptions();
+		IMobileDevice myDevice=driver.findDevice(options);
+		myDevice.open();
+		System.out.println("Selected device ID:"+ myDevice.getProperty(MobileDeviceProperty.DEVICE_ID)+
+				            "Selected device Model:"+ myDevice.getProperty(MobileDeviceProperty.MODEL));
+		return myDevice;
+	}
+	
+	private static void sleep(long millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException e) {
+		}
+	}
+}
