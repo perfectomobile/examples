@@ -96,6 +96,11 @@ The test open google and search for Perfecto Mobile.
     Demonstrates how to upload files from user PC to cloud folders.   
 </td>
 </tr>
+<td> Install APK or IPA file across a list of devices</td>
+<td>
+    Using findDevices function (based on Manufacturer), opens List of devices and installs appropriate Application on device.   
+</td>
+</tr>
 <tr>
 <td> Using JUnit Annotations</td>
 <td>
