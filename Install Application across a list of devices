@@ -1,4 +1,3 @@
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -58,7 +57,7 @@ public class MobileTest {
 				String OS=device.getProperty(MobileDeviceProperty.OS);
 				sleep(5000);
 				try{
-					if (OS.equals("Apple")){
+					if (OS.equals("iOS")){
 						device.installApplication(repositoryKeyApple);
 					}
 					else{
