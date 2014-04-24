@@ -42,13 +42,13 @@ public class MobileTest {
 		try {
          // write your code here
 			//Upload IPA file from my folder to repository
-			String repositoryKeyApple = "PUBLIC:Wikipedia Mobile.ipa";
-			File file = new File("H://Apps//Wikipedia Mobile.ipa");
+			String repositoryKeyApple = "PUBLIC:PMIOSDemo.ipa";
+			File file = new File("H://Apps//PMIOSDemo.ipa");
 			driver.uploadMedia(repositoryKeyApple, file);
 			
 			//Upload APK file from my folder to repository
-			String repositoryKeyAndroid = "PRIVATE:AnswerMe.apk";
-			file = new File("H://APPS//AnswerMe.apk");
+			String repositoryKeyAndroid = "PRIVATE:PMIOSDemo.apk";
+			file = new File("H://APPS//PMIOSDemo.apk");
 			driver.uploadMedia(repositoryKeyAndroid, file);
 			
 			IMobileDevice device=selectDevicefree(driver);
@@ -66,14 +66,9 @@ public class MobileTest {
 			
 			
 			//end of the test
-			if (OS.equals("iOS")){
-				 device.getNativeDriver("Wikipedia").uninstall();//Application name
-				 }
-			 else{
-				 device.getNativeDriver("AnswerMe").uninstall();
-			     }
 			
 			
+			device.resetApplications();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
