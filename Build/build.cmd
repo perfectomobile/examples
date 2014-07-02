@@ -1,2 +1,2 @@
 echo "start Build"
-java -jar Jenkins-ex.jar
+java -jar c:\teamCity\PerfectoRep\Jenkins-ex.jar
