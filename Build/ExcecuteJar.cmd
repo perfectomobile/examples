@@ -1,5 +1,3 @@
 echo "start Build"
-java -jar C:\Perfectomobile\CIDemo\Build.jar "3152168C4EAA1E2A5DE93CF7B89222720E3A62E0" "c:\\Perfectomobile\\CIDemo"
 
-
-java -jar C:\Perfectomobile\CIDemo\JenkinsSeleniumDemo_v1.2.jar DEVICE_ID=XXXXXXXX BUILD_LOCATION=C:\\Perfectomobile\\CIDemo REPOSITORY_KEY=PRIVATE:Apps APP_NAME=PMIOSDemo.ipa
+java -jar C:\Perfectomobile\CIDemo\SeleniumDemo_v1.2.jar DEVICE_ID=4060DA913A53B10B444E1FF4CBF04C072790E97F BUILD_LOCATION=C:\\Perfectomobile\\CIDemo REPOSITORY_KEY=PRIVATE:Apps APP_NAME=PMIOSDemo.ipa
