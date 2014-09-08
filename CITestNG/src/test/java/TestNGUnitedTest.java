@@ -47,12 +47,12 @@ public class TestNGUnitedTest {
 	@AfterTest
 	public void afterTest(){
 		driver.quit();
-		InputStream reportStream = ((IMobileDriver) driver).downloadReport(MediaType.HTML);
+		InputStream reportStream = ((IMobileDriver) driver).downloadReport(MediaType.PDF);
 
 		if (reportStream != null) {
-			File reportFile = new File(Constants.REPORT_LIB+"TestNG_"+_Device+".HTML");
+			File reportFile = new File(Constants.REPORT_LIB+"TestNG_"+_Device+".PDF");
 			FileUtils.write(reportStream, reportFile);
-			Reporter.log( Constants.REPORT_LIB+"TestNG_"+_Device+".HTML");
+			Reporter.log( Constants.REPORT_LIB+"TestNG_"+_Device+".PDF");
 
 		}
 	}
@@ -72,7 +72,7 @@ public class TestNGUnitedTest {
 
 		
 		 
-		String filename =Constants.REPORT_LIB+"TestNG_"+_Device+".HTML"  ;
+		String filename =Constants.REPORT_LIB+"TestNG_"+_Device+".PDF"  ;
 		Reporter.log("</br><b>Report:</b> <a href=" + filename +">Report</a>");
 
 		assert rc.equals("New York/Newark, NJ (EWR)") : "Expected  New York/Newark, NJ (EWR)" + rc;
