@@ -56,6 +56,27 @@ public class TestNGUnitedTest {
 			FileUtils.write(reportStream, reportFile);
 			Reporter.log( Constants.REPORT_LIB+"TestNG_"+_Device+".HTML");
 
+			String filename =Constants.REPORT_LIB+"TestNG_"+_Device+".HTML"  ;
+			//	Reporter.log("</br><b>Report:</b> <a href=" + filename +">Report</a>");
+
+			try {
+				BufferedReader br = new BufferedReader(new FileReader(filename));
+
+				StringBuilder sb = new StringBuilder();
+				String line = br.readLine();
+
+				while (line != null) {
+					sb.append(line);
+					sb.append(System.lineSeparator());
+					line = br.readLine();
+
+				}
+				Reporter.log(sb.toString());
+				br.close();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+			
 		}
 	}
 
@@ -72,28 +93,7 @@ public class TestNGUnitedTest {
 		PerfectoTest t = new PerfectoTest();
 		String rc =  t.checkFlights(device);
 
-
-		String filename =Constants.REPORT_LIB+"TestNG_"+_Device+".HTML"  ;
-		//	Reporter.log("</br><b>Report:</b> <a href=" + filename +">Report</a>");
-
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(filename));
-
-			StringBuilder sb = new StringBuilder();
-			String line = br.readLine();
-
-			while (line != null) {
-				sb.append(line);
-				sb.append(System.lineSeparator());
-				line = br.readLine();
-
-			}
-			Reporter.log(sb.toString());
-			br.close();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-
+	
 		assert rc.equals("New York/Newark, NJ (EWR)") : "Expected  New York/Newark, NJ (EWR)" + rc;
 
 
