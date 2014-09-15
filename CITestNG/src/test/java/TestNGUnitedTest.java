@@ -66,12 +66,11 @@ public class TestNGUnitedTest {
 				String line = br.readLine();
 
 				while (line != null) {
-					sb.append(line);
-					sb.append(System.lineSeparator());
 					line = br.readLine();
+					Reporter.log(line);
+
 
 				}
-				Reporter.log(sb.toString());
 				br.close();
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
