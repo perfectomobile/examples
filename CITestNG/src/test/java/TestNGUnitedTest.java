@@ -67,7 +67,7 @@ public class TestNGUnitedTest {
 
 				while (line != null) {
 					line = br.readLine();
-					Reporter.log(line);
+					Reporter.log(line.trim());
 
 
 				}
