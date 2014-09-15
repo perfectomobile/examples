@@ -65,12 +65,17 @@ public class TestNGUnitedTest {
 				StringBuilder sb = new StringBuilder();
 				String line = br.readLine();
 
+				Reporter.log("<DIV>");
+
 				while (line != null) {
+					sb.append(line);
+					sb.append(System.lineSeparator());
 					line = br.readLine();
-					Reporter.log(line.trim());
-
-
 				}
+				Reporter.log(sb.toString());
+
+				Reporter.log("</DIV>");
+
 				br.close();
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
