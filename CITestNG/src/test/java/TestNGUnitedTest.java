@@ -93,6 +93,7 @@ public class TestNGUnitedTest {
 		IMobileDevice device = driver.getDevice(deviceID);
 		Reporter.log("device MODEL :"+device.getProperty(MobileDeviceProperty.MODEL));
 		Reporter.log("device OS :"+device.getProperty(MobileDeviceProperty.OS));
+		Reporter.log("Version 1.0");
 
 		PerfectoTest t = new PerfectoTest();
 		String rc =  t.checkFlights(device);
