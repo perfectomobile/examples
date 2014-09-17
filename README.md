@@ -126,4 +126,27 @@ Get list of objects with specific property and manipulate it in the code, in thi
 This factory return the next available device in Perfecto Mobile cloud based on the OS (Android or iOS)
 </td>
 </tr>
+<tr>
+<td>UISelect</td>
+<td>
+work with dropdown menu<br> 
+the code contains to classes:<br>
+1.	<b>execSelectTest</b> – main class which execute the test on the American express web page.<br>
+2.	<b>PMUISelect</b> – drop down object manager.<br>
+
+How to use it:<br>
+
+Find to object with xpath:<br>
+WebElement item  = webdriver.findElement(By.xpath("//*[@id='manage']"));<br>
+
+Create new PMUISelect objwct with this item and the WebDriver (dom) <br>
+PMUISelect sel = new PMUISelect(item,webdriver);<br>
+
+Select the iteam by text or index <br>
+	sel.selectByIndex(2);<br>
+	sel.selectByVisibleText("Merchant Account");<br>
+</td>
+</tr>
+
+
 </table>
