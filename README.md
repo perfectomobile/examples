@@ -130,13 +130,13 @@ This factory return the next available device in Perfecto Mobile cloud based on 
 <td>UISelect</td>
 <td>
 work with dropdown menu<br> 
-the code contains to classes:<br>
+the code contains two classes:<br>
 1.	<b>execSelectTest</b> – main class which execute the test on the American express web page.<br>
 2.	<b>PMUISelect</b> – drop down object manager.<br>
 
 How to use it:<br>
 
-Find to object with xpath:<br>
+Find the object with xpath:<br>
 WebElement item  = webdriver.findElement(By.xpath("//*[@id='manage']"));<br>
 
 Create new PMUISelect objwct with this item and the WebDriver (dom) <br>
