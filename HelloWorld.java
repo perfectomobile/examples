@@ -25,12 +25,13 @@ public class MobileTest {
 			IMobileDevice device = driver.getDevice("3152168C4EAA1E2A5DE93CF7B89222720E3A62E0");
 			device.open();
 			IMobileWebDriver webDriver = device.getDOMDriver("google.com");
+			webDriver..manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			
 			webDriver.findElement(By.xpath("(//@id=\"lst-ib\")[1]")).sendKeys("PerfectoMobile");
 			webDriver.findElement(By.xpath("(//@id=\"tsbb\")[1]")).click();
 
 
-;			
+			
 		} catch (Exception e) {
 			
 			e.printStackTrace();
