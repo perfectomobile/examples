@@ -8,7 +8,6 @@ import com.perfectomobile.selenium.api.IMobileWebDriver;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
 /**
  * Models a SELECT tag, providing helper methods to select and deselect options.
@@ -16,14 +15,22 @@ import java.util.StringTokenizer;
 public class PMUISelect {
 
 	private  WebElement _element = null;
+	private  String _xpath = null;
 	private  boolean isMulti =false;
 	private  List<String> _listByValue = new   ArrayList<String>();
 	private  List<String> _listBytext = new   ArrayList<String>();
 	private IMobileWebDriver webdriver =null;
 	private String elementID =null;
+	private String nameID =null;
 
-	public PMUISelect(WebElement element,WebDriver w) {
+	public PMUISelect(WebElement element,WebDriver w)  
+	{
+		this(element,w,null);
+	}
+
+	public PMUISelect(WebElement element,WebDriver w,String Xpath) {
 		String tagName = element.getTagName();
+		_xpath = Xpath;
 		webdriver = (IMobileWebDriver)w;
 		if (null == tagName || !"select".equals(tagName.toLowerCase())) {
 			throw new UnexpectedTagNameException("select", tagName);
@@ -35,17 +42,19 @@ public class PMUISelect {
 		isMulti = (value != null && !"false".equals(value));
 
 		// get the element ID for all the js
-		elementID	=_element.getAttribute("ID");
+		nameID	=_element.getAttribute("name");
+
+
 
 		// loop over the option and build element map
 
-		
+
 		// refresh the element if other select affected it 
 		webdriver.executeScript(getRefreshJS());
 
 		for (WebElement option : getOptions()) {
-			_listByValue.add(option.getAttribute("value"));
-			_listBytext.add(option.getText());
+		//	_listByValue.add(option.getAttribute("value"));
+		//	_listBytext.add(option.getText());
 		}
 	}
 
@@ -61,7 +70,19 @@ public class PMUISelect {
 	 * @return All options belonging to this select tag
 	 */
 	public List<WebElement> getOptions() {
-		return _element.findElements(By.tagName("option"));
+
+		if (_xpath == null)
+		{
+			return _element.findElements(By.tagName("option"));
+		}
+		else
+		{
+			String listXpath = _xpath+"//child::*";
+			return _element.findElements(By.xpath(listXpath));
+		}
+		// //*[@name='productName']/child::* 
+
+
 	}
 
 	/**
@@ -69,6 +90,7 @@ public class PMUISelect {
 	 */
 	private List<WebElement> getAllSelectedOptions() {
 		List<WebElement> toReturn = new ArrayList<WebElement>();
+
 
 		for (WebElement option : getOptions()) {
 			if (option.isSelected()) {
@@ -103,8 +125,20 @@ public class PMUISelect {
 
 	public void selectByIndex(int index) {
 
-		webdriver.executeScript("document.getElementById(\""+elementID+"\").options["+index+"].selected=false");
-		webdriver.executeScript("document.getElementById(\""+elementID+"\").options["+index+"].selected=true");
+
+		if (elementID!=null)
+		{
+
+			webdriver.executeScript("document.getElementById(\""+elementID+"\").options["+index+"].selected=false");
+			webdriver.executeScript("document.getElementById(\""+elementID+"\").options["+index+"].selected=true");
+
+		} else
+		{
+ 			webdriver.executeScript("document.getElementsByName(\""+nameID+"\")[0].options["+index+"].selected=false");
+			webdriver.executeScript("document.getElementsByName(\""+nameID+"\")[0].options["+index+"].selected=true");
+
+		}
+
 		webdriver.executeScript(getRefreshJS());
 
 	}
@@ -157,7 +191,7 @@ public class PMUISelect {
 			if (val.equals(text)) 
 			{
 				deselectByIndex(i);
-				
+
 			}
 			i++;
 		}
