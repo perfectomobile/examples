@@ -131,15 +131,17 @@ public class PMUISelect {
 
 			webdriver.executeScript("document.getElementById(\""+elementID+"\").options["+index+"].selected=false");
 			webdriver.executeScript("document.getElementById(\""+elementID+"\").options["+index+"].selected=true");
+			webdriver.executeScript(getRefreshJS());
 
+			
 		} else
 		{
  			webdriver.executeScript("document.getElementsByName(\""+nameID+"\")[0].options["+index+"].selected=false");
 			webdriver.executeScript("document.getElementsByName(\""+nameID+"\")[0].options["+index+"].selected=true");
+			webdriver.executeScript(getRefreshJSByName());
 
 		}
 
-		webdriver.executeScript(getRefreshJS());
 
 	}
 
@@ -213,6 +215,20 @@ public class PMUISelect {
 
 		return script;
 	}
+	
+	private String getRefreshJSByName()
+	{
+		String script = " if (\"createEvent\" in document) {"+
+				"var evt = document.createEvent(\"HTMLEvents\");"+
+				"evt.initEvent(\"change\", false, true);"+
+				"document.getElementsByName(\""+nameID+"\")[0].dispatchEvent(evt);"+
+				"}"+
+				"else"+
+				"	document.getElementsByName(\""+nameID+"\")[0].fireEvent(\"onchange\");";
+
+		return script;
+	}
+	
 
 
 }
