@@ -107,6 +107,14 @@ The test open google and search for Perfecto Mobile.
     Using @BeforeClass and @AfterClass JUnit Annotations
 </td>
 </tr>
+
+<tr>
+<td>RWDTests</td>
+<td>
+	This test uses the standard remoteWebDriver to connect the cloud and select the device by properties like "model" and "version".
+</td>
+</tr>
+
 <tr>
 <td> Work with device reservation</td>
 <td>
