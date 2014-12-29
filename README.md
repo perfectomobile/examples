@@ -107,14 +107,19 @@ The test open google and search for Perfecto Mobile.
     Using @BeforeClass and @AfterClass JUnit Annotations
 </td>
 </tr>
-
+RWDDownloadReport
 <tr>
 <td>RWDTests</td>
 <td>
 	This test uses the standard remoteWebDriver to connect the cloud and select the device by properties like "model" and "version".
 </td>
 </tr>
-
+<tr>
+<td>RWDDownloadReport</td>
+<td>
+This test uses the standard remoteWebDriver, at the end of the execution it downloads the report from Perfecto cloud into local directory.
+</td>
+</tr>
 <tr>
 <td> Work with device reservation</td>
 <td>
