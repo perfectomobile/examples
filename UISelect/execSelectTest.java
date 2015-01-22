@@ -41,13 +41,18 @@ public class execSelectTest
 		webdriver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
 
 
+	
 		WebElement item  = webdriver.findElement(By.xpath("//*[@id='manage']"));
-		PMUISelect sel = new PMUISelect(item,webdriver);
-		
-		sel.selectByIndex(2);
-		//sel.selectByVisibleText("Merchant Account");
+		if (item.isEnabled())
+		{
+			PMSelectII sel = new PMSelectII(webdriver, "manage");
+			
+			// you can use by index or by val 
+			//	sel.selectElementByIndex(2);
+			   sel.selectElementbyVal("merchantact");
 
-		
+		}
+	 
 		
 	
 		webdriver.findElement(By.xpath("(//input[@id=\"Username\"])[1]")).sendKeys("uzi");
