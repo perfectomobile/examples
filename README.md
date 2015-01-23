@@ -145,19 +145,20 @@ This factory return the next available device in Perfecto Mobile cloud based on 
 work with dropdown menu<br> 
 the code contains two classes:<br>
 1.	<b>execSelectTest</b> – main class which execute the test on the American express web page.<br>
-2.	<b>PMUISelect</b> – drop down object manager.<br>
+2.	<b>PMUISelect - deprecated code </b> – drop down object manager.<br>
+3.	<b>PMSelectII - </b> drop down object manager.<br>
 
 How to use it:<br>
 
 Find the object with xpath:<br>
 WebElement item  = webdriver.findElement(By.xpath("//*[@id='manage']"));<br>
 
-Create new PMUISelect objwct with this item and the WebDriver (dom) <br>
-PMUISelect sel = new PMUISelect(item,webdriver);<br>
+Create new PMUISelect obejct with this item and the WebDriver (dom) <br>
+PMSelectII sel = new PMSelectII(webdriver, "manage");<br>
 
 Select the iteam by text or index <br>
-	sel.selectByIndex(2);<br>
-	sel.selectByVisibleText("Merchant Account");<br>
+	sel.selectElementByIndex(2);<br>
+	sel.selectElementbyVal("Merchant Account");<br>
 </td>
 </tr>
 
