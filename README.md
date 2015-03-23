@@ -134,6 +134,13 @@ Get list of objects with specific property and manipulate it in the code, in thi
 </td>
 </tr>
 <tr>
+<td>DeviceManagerWiFi</td>
+<td>
+This class manage the WIFI on Android and IOS and allows to trun it on and off and get the WiFi status
+</td>
+</tr> 
+ 
+<tr>
 <td>DeviceFactory</td>
 <td>
 This factory return the next available device in Perfecto Mobile cloud based on the OS (Android or iOS)
