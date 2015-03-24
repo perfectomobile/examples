@@ -43,10 +43,14 @@ public class DeviceManagerWiFi {
 		// WIFI-OFF - turn  off the WIFI
 		// WIFI-TOGGLE - toggle the WIFI 
 		// WIFI-STATUS - return the starts + net network name  
-		String action  = "WIFI-ON" ; // WIFI-ON ; WIFI-OFF ; WIFI-TOGGLE ; WIFI-STATUS
-		
-		ManageDeviceWiFi(cloud,user,password,deviceID,action);
+		String action  = "WIFI-ON" ; // WIFI-ON ; WIFI-OFF ; WIFI-TOGGLE ; WIFI-STATUS ; FLIGHT-MODE
+		 ManageDeviceWiFi(cloud,user,password,deviceID,action);
+
+	//	ManageDeviceWiFi("","","","0149BCA71700D01F","FLIGHT-MODE");
+	//	ManageDeviceWiFi("","","","39F3DA5531ADBE2A05CFF4D65E43A2C38D3D595A","FLIGHT-MODE");
+
 	}
+	
 	public static void ManageDeviceWiFi(String Cloud,String User, String Password, String DeviceID,String action)
 	{
 
@@ -63,7 +67,10 @@ public class DeviceManagerWiFi {
 				{
 					System.out.println(">>>>"+WiFIStatusIphone(device));
 
-				}else
+				}else if (action.equals("FLIGHT-MODE"))
+				{
+					flightModeResetIphone(device);
+				}else 
 				{
 					//device.open();
 					setWiFiIphone(device,action);
@@ -76,7 +83,11 @@ public class DeviceManagerWiFi {
 				{
 					System.out.println(">>>>"+WiFIStatusAndroid(device));
 
-				}else
+				}else if (action.equals("FLIGHT-MODE"))
+				{
+					flightModeResetAndroid(device);
+				}
+				else
 				{
 					//device.open();
 					setWiFiAndroid(device,action);
@@ -89,7 +100,6 @@ public class DeviceManagerWiFi {
 		} finally {
 			driver.quit();
 		}
-		System.out.println("Run ended");
 	}
 
 	public static boolean setWiFiAndroid(IMobileDevice device,String action)
@@ -126,13 +136,13 @@ public class DeviceManagerWiFi {
 		IMobileWebDriver settingWD =device.getNativeDriver();
 		WebElement switchOnOff = settingWD.findElement(By.xpath("//switch")) ;
 		String currentStatusStr = switchOnOff.getText();
-		
+
 		if (currentStatusStr.equals("OFF")) 
 		{
 			return "off";
 		}
 
- 		String network;
+		String network;
 		try {
 			network = settingWD.findElement(By.xpath("//text[text()='Connected']/preceding-sibling::*")).getText();
 
@@ -141,7 +151,7 @@ public class DeviceManagerWiFi {
 		}
 		return "on:"+network ;
 
- 
+
 	}
 	public static boolean setWiFiIphone(IMobileDevice device,String action)
 	{
@@ -170,7 +180,6 @@ public class DeviceManagerWiFi {
 		}
 		sleep(1000);
 
-
 		switchOnOff.click();
 		sleep(1000);
 		switchOnOff.click();
@@ -179,6 +188,18 @@ public class DeviceManagerWiFi {
 		return true;
 
 	}
+
+
+	public static void text (IMobileDevice device) 
+	{
+		IMobileWebDriver settingWD =device.getNativeDriver();
+		WebElement switchOnOff = settingWD.findElement(By.xpath("//switch")) ;
+		switchOnOff.click();
+		sleep(1000);
+		switchOnOff.click();
+
+	}
+
 
 	public static String WiFIStatusIphone(IMobileDevice device)
 	{
@@ -204,16 +225,66 @@ public class DeviceManagerWiFi {
 
 
 	}
+
+	public static boolean flightModeResetIphone(IMobileDevice device)
+	{
+		openSettingIphone(device);
+		IMobileWebDriver settingWD =device.getNativeDriver();
+ 		WebElement airplane = settingWD.findElement(By.xpath("//cell[@name='Airplane Mode']/switch")) ;
+ 
+		// 0 = off , first turn it on 
+		if (airplane.getAttribute("value").equals("0"))
+		{
+			airplane.click();
+			sleep(3000);
+		}
+		airplane.click();
+
+		return true;
+	}
+	public static boolean flightModeResetAndroid(IMobileDevice device)
+	{
+		openSettingAPAndroid(device);
+		IMobileWebDriver settingWD =device.getNativeDriver();
+
+		WebElement airplane = settingWD.findElement(By.xpath("//checkbox")) ;
+		String checked = airplane.getAttribute("checked");
+		
+		// 0 = off , first turn it on 
+	 	if (checked.equals("false"))
+		{
+			airplane.click();
+			sleep(3000);
+		}
+		airplane.click();
+ 
+		return true;
+	}
+
 	private static void openSettingAndroid(IMobileDevice device) {
 		Map<String, String> commandParams = new HashMap<String, String>();
 		commandParams.put("handsetId", device.getDeviceId());
 		commandParams.put("command", "am start -a android.intent.action.MAIN -n com.android.settings/.wifi.WifiSettings");
+		// 
+		device.executeGenericCommand("handset", "shell",commandParams);
+
+	}
+
+	private static void openSettingAPAndroid(IMobileDevice device) {
+		Map<String, String> commandParams = new HashMap<String, String>();
+		commandParams.put("handsetId", device.getDeviceId());
+		commandParams.put("command", "am start -a  android.settings.WIRELESS_SETTINGS");
+		// 
 		device.executeGenericCommand("handset", "shell",commandParams);
 
 	}
 	private static void openSettingIphone(IMobileDevice device) {
+
+		// device is IMobileDevice
 		device.getNativeDriver("Settings").open();
+		sleep(1000);
 		device.getNativeDriver("Settings").close();
+		sleep(1000);
 		device.getNativeDriver("Settings").open();
 
 		/*   *** removed - opened always on the first page 
